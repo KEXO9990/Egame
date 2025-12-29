@@ -1,0 +1,116 @@
+.game-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.round-badge {
+  background: rgba(212, 175, 55, 0.2);
+  color: var(--accent-gold);
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  letter-spacing: 1px;
+  border: 1px solid rgba(212, 175, 55, 0.3);
+}
+
+.question-card {
+  text-align: center;
+  margin: 30px 0;
+}
+
+.question-icon {
+  font-size: 3rem;
+  margin-bottom: 20px;
+}
+
+.question-text {
+  font-size: 1.8rem;
+  color: var(--text-primary);
+  line-height: 1.4;
+  font-weight: 400;
+}
+
+.answer-section {
+  margin-top: 30px;
+}
+
+.answer-label {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 10px;
+}
+
+.answer-input {
+  width: 100%;
+  padding: 16px;
+  background: rgba(10, 25, 41, 0.5);
+  border: 2px solid rgba(212, 175, 55, 0.3);
+  border-radius: 12px;
+  color: var(--text-primary);
+  font-size: 1rem;
+  font-family: 'Montserrat', sans-serif;
+  resize: vertical;
+  transition: all 0.3s ease;
+  margin-bottom: 10px;
+}
+
+.answer-input:focus {
+  outline: none;
+  border-color: var(--accent-gold);
+  box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
+}
+
+.answer-input::placeholder {
+  color: var(--text-secondary);
+  opacity: 0.6;
+}
+
+.char-count {
+  text-align: right;
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  margin-bottom: 15px;
+}
+
+.waiting-section {
+  text-align: center;
+  padding: 60px 20px;
+}
+
+.waiting-spinner {
+  width: 60px;
+  height: 60px;
+  border: 4px solid rgba(212, 175, 55, 0.2);
+  border-top-color: var(--accent-gold);
+  border-radius: 50%;
+  margin: 0 auto 30px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.waiting-text {
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+}
+
+@media (max-width: 768px) {
+  .game-header {
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-start;
+  }
+
+  .question-text {
+    font-size: 1.4rem;
+  }
+}
