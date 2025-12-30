@@ -1,0 +1,83 @@
+.challenge-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.challenge-title {
+  font-size: 2.5rem;
+  background: linear-gradient(135deg, #d4af37 0%, #f4e5a1 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.challenge-card {
+  position: relative;
+  padding: 40px 30px;
+  text-align: center;
+  background: rgba(10, 25, 41, 0.8);
+  border-width: 3px;
+  min-height: 250px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.challenge-type-badge {
+  position: absolute;
+  top: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 8px 24px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.type-emoji {
+  font-size: 1.2rem;
+}
+
+.type-text {
+  color: white;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 0.9rem;
+}
+
+.challenge-text {
+  color: var(--text-primary);
+  font-size: 1.5rem;
+  line-height: 1.6;
+  font-weight: 400;
+  font-family: 'Cormorant Garamond', serif;
+  margin-top: 20px;
+}
+
+.challenge-instructions {
+  text-align: center;
+  margin: 30px 0;
+  color: var(--text-secondary);
+  font-size: 1rem;
+}
+
+.challenge-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-top: 30px;
+}
+
+@media (max-width: 768px) {
+  .challenge-title {
+    font-size: 2rem;
+  }
+
+  .challenge-text {
+    font-size: 1.2rem;
+  }
+}

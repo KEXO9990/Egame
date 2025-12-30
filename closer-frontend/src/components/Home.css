@@ -1,0 +1,55 @@
+.welcome-text {
+  text-align: center;
+  margin-bottom: 40px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  font-size: 1.05rem;
+}
+
+.button-group {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-bottom: 40px;
+}
+
+.features {
+  display: grid;
+  gap: 20px;
+  margin-top: 40px;
+  padding-top: 30px;
+  border-top: 1px solid rgba(212, 175, 55, 0.2);
+}
+
+.feature {
+  text-align: center;
+}
+
+.feature-icon {
+  font-size: 2rem;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.feature p {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+.form-title {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 30px;
+  color: var(--accent-gold);
+}
+
+@media (max-width: 768px) {
+  .welcome-text {
+    font-size: 0.95rem;
+  }
+
+  .form-title {
+    font-size: 1.5rem;
+  }
+}
