@@ -50,6 +50,21 @@ function App() {
   });
   const [error, setError] = useState('');
 
+  // Clear localStorage when on home screen
+  useEffect(() => {
+    if (gameState === 'home') {
+      localStorage.removeItem('gameState');
+      localStorage.removeItem('playerName');
+      localStorage.removeItem('roomCode');
+      localStorage.removeItem('players');
+      localStorage.removeItem('currentQuestion');
+      localStorage.removeItem('round');
+      localStorage.removeItem('revealData');
+      localStorage.removeItem('challenge');
+      localStorage.removeItem('score');
+    }
+  }, [gameState]);
+
   // Save state to localStorage whenever it changes
   useEffect(() => {
     if (gameState !== 'home') {
@@ -69,17 +84,31 @@ function App() {
     const newSocket = io(SOCKET_URL);
     setSocket(newSocket);
 
+    newSocket.on('connect', () => {
+      console.log('Socket connected:', newSocket.id);
+    });
+
+    newSocket.on('connect_error', (error) => {
+      console.error('Socket connection error:', error);
+      setError('Cannot connect to server');
+      setTimeout(() => setError(''), 3000);
+    });
+
     // Rejoin room if coming back from refresh
     const savedRoomCode = localStorage.getItem('roomCode');
     const savedPlayerName = localStorage.getItem('playerName');
-    if (savedRoomCode && savedPlayerName && gameState !== 'home') {
-      newSocket.emit('rejoin-room', { 
-        roomCode: savedRoomCode, 
-        playerName: savedPlayerName 
+    const savedGameState = localStorage.getItem('gameState');
+    if (savedRoomCode && savedPlayerName && savedGameState && savedGameState !== 'home') {
+      newSocket.on('connect', () => {
+        newSocket.emit('rejoin-room', { 
+          roomCode: savedRoomCode, 
+          playerName: savedPlayerName 
+        });
       });
     }
 
     newSocket.on('room-created', ({ roomCode, player }) => {
+      console.log('Room created:', roomCode);
       setRoomCode(roomCode);
       setPlayers([player]);
       setGameState('waiting');
@@ -144,12 +173,29 @@ function App() {
   }, []);
 
   const createRoom = (name) => {
-    if (!socket || !socket.connected) {
-      setError('Connecting to server...');
+    console.log('Creating room for:', name);
+    console.log('Socket status:', socket?.connected);
+    
+    if (!socket) {
+      setError('Please wait, connecting to server...');
       setTimeout(() => setError(''), 2000);
       return;
     }
+    
+    if (!socket.connected) {
+      setError('Connecting to server...');
+      // Wait for connection then retry
+      socket.once('connect', () => {
+        console.log('Socket connected, creating room');
+        setPlayerName(name);
+        socket.emit('create-room', name);
+      });
+      setTimeout(() => setError(''), 2000);
+      return;
+    }
+    
     setPlayerName(name);
+    console.log('Emitting create-room event');
     socket.emit('create-room', name);
   };
 
