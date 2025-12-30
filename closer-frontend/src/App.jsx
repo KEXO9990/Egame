@@ -9,7 +9,7 @@ import Challenge from './components/Challenge';
 import GameOver from './components/GameOver';
 
 // Update this with your deployed backend URL
-const SOCKET_URL = import.meta.env.VITE_SOCKET_URL || 'https://closer-backend-production.up.railway.app';
+const SOCKET_URL = import.meta.env.VITE_SOCKET_URL || 'https://egame-production.up.railway.app';
 
 function App() {
   const [socket, setSocket] = useState(null);
