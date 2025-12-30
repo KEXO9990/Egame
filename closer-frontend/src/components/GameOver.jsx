@@ -6,23 +6,23 @@ function GameOver({ score, rounds, onPlayAgain }) {
     
     if (percentage >= 80) {
       return {
-        title: '🌟 Soulmates! 🌟',
-        message: 'You two are incredibly in sync! Your connection is truly special.',
+        title: '🌟 توأم روح! 🌟',
+        message: 'أنتما متناغمان بشكل لا يصدق! ارتباطكما مميز حقاً.',
       };
     } else if (percentage >= 60) {
       return {
-        title: '💕 Great Connection! 💕',
-        message: 'You understand each other well and have a beautiful bond.',
+        title: '💕 اتصال رائع! 💕',
+        message: 'أنتما تفهمان بعضكما جيداً ولديكما رابط جميل.',
       };
     } else if (percentage >= 40) {
       return {
-        title: '✨ Growing Together ✨',
-        message: 'You\'re learning more about each other. Keep exploring!',
+        title: '✨ تنموان معاً ✨',
+        message: 'أنتم تتعلمون المزيد عن بعضكم. استمروا في الاستكشاف!',
       };
     } else {
       return {
-        title: '🌱 Just Getting Started 🌱',
-        message: 'Every couple is unique! Use these insights to grow closer.',
+        title: '🌱 مجرد بداية 🌱',
+        message: 'كل ثنائي فريد! استخدموا هذه الرؤى للتقرب أكثر.',
       };
     }
   };
@@ -32,17 +32,17 @@ function GameOver({ score, rounds, onPlayAgain }) {
   return (
     <div className="container fade-in">
       <div className="game-over-header">
-        <h1 className="game-over-title">Game Complete!</h1>
+        <h1 className="game-over-title">اكتملت اللعبة!</h1>
       </div>
 
       <div className="stats-card card">
         <div className="stat-item">
-          <div className="stat-label">Total Score</div>
+          <div className="stat-label">مجموع النقاط</div>
           <div className="stat-value">{score}</div>
         </div>
         <div className="stat-divider"></div>
         <div className="stat-item">
-          <div className="stat-label">Rounds Played</div>
+          <div className="stat-label">الجولات الملعوبة</div>
           <div className="stat-value">{rounds}</div>
         </div>
       </div>
@@ -53,11 +53,11 @@ function GameOver({ score, rounds, onPlayAgain }) {
       </div>
 
       <div className="final-message fade-in">
-        <p>Thank you for playing Closer. May your bond continue to deepen. 💝</p>
+        <p>شكراً للعب كلوزر. نتمنى أن يزداد ارتباطكما عمقاً. 💝</p>
       </div>
 
       <button className="btn" onClick={onPlayAgain}>
-        Play Again
+        العب مرة أخرى
       </button>
     </div>
   );

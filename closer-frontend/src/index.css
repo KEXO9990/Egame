@@ -14,11 +14,12 @@
 }
 
 body {
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Tajawal', sans-serif;
   background: linear-gradient(135deg, #0a1929 0%, #1a2942 100%);
   color: var(--text-primary);
   min-height: 100vh;
   overflow-x: hidden;
+  direction: rtl;
 }
 
 #root {
@@ -26,12 +27,12 @@ body {
 }
 
 h1, h2, h3 {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'Cairo', sans-serif;
   font-weight: 600;
 }
 
 button {
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Tajawal', sans-serif;
   cursor: pointer;
   transition: all 0.3s ease;
 }
@@ -41,8 +42,8 @@ button:disabled {
   cursor: not-allowed;
 }
 
-input {
-  font-family: 'Montserrat', sans-serif;
+input, textarea {
+  font-family: 'Tajawal', sans-serif;
 }
 
 @keyframes fadeIn {
@@ -86,9 +87,9 @@ input {
 }
 
 .fade-in {
-  animation: fadeIn 0.5s ease-out;
+  animation: fadeIn 0.8s ease-out;
 }
 
 .slide-in {
-  animation: slideIn 0.5s ease-out;
+  animation: slideIn 0.8s ease-out;
 }

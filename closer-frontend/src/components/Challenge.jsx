@@ -1,6 +1,6 @@
 import './Challenge.css';
 
-function Challenge({ challenge, onNext }) {
+function Challenge({ challenge, onNext, onExit }) {
   const getTypeColor = (type) => {
     switch(type) {
       case 'light': return '#4ecdc4';
@@ -19,16 +19,25 @@ function Challenge({ challenge, onNext }) {
     }
   };
 
+  const getTypeText = (type) => {
+    switch(type) {
+      case 'light': return 'خفيف';
+      case 'romantic': return 'رومانسي';
+      case 'deep': return 'عميق';
+      default: return 'تحدي';
+    }
+  };
+
   return (
     <div className="container fade-in">
       <div className="challenge-header">
-        <h2 className="challenge-title">Challenge Time!</h2>
+        <h2 className="challenge-title">وقت التحدي!</h2>
       </div>
 
       <div className="challenge-card card" style={{ borderColor: getTypeColor(challenge.type) }}>
         <div className="challenge-type-badge" style={{ background: getTypeColor(challenge.type) }}>
           <span className="type-emoji">{getTypeEmoji(challenge.type)}</span>
-          <span className="type-text">{challenge.type}</span>
+          <span className="type-text">{getTypeText(challenge.type)}</span>
         </div>
         
         <div className="challenge-text">
@@ -37,12 +46,17 @@ function Challenge({ challenge, onNext }) {
       </div>
 
       <div className="challenge-instructions fade-in">
-        <p>Complete this challenge together, then continue to the next round.</p>
+        <p>أكملوا هذا التحدي معاً، ثم انتقلوا إلى الجولة التالية.</p>
       </div>
 
-      <button className="btn" onClick={onNext}>
-        Next Round
-      </button>
+      <div className="challenge-buttons">
+        <button className="btn" onClick={onNext}>
+          الجولة التالية
+        </button>
+        <button className="btn btn-secondary" onClick={onExit}>
+          الخروج للصفحة الرئيسية
+        </button>
+      </div>
     </div>
   );
 }

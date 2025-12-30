@@ -111,6 +111,54 @@ io.on('connection', (socket) => {
     console.log(`Player ${playerName} joined room ${roomCode}`);
   });
 
+  socket.on('rejoin-room', ({ roomCode, playerName }) => {
+    const room = rooms.get(roomCode);
+    
+    if (!room) {
+      socket.emit('error', { message: 'Room not found' });
+      return;
+    }
+
+    // Check if player was already in the room
+    const existingPlayerIndex = room.players.findIndex(p => p.name === playerName);
+    
+    if (existingPlayerIndex !== -1) {
+      // Update socket ID for existing player
+      room.players[existingPlayerIndex].socketId = socket.id;
+      room.players[existingPlayerIndex].id = socket.id;
+      socket.join(roomCode);
+      
+      // Send current room state back to rejoining player
+      socket.emit('rejoin-success', {
+        players: room.players,
+        state: room.state,
+        currentQuestion: room.currentQuestion,
+        round: room.round,
+        score: room.score
+      });
+      
+      console.log(`Player ${playerName} rejoined room ${roomCode}`);
+    } else if (room.players.length < 2) {
+      // Player not found, add them as new player
+      const player = {
+        id: socket.id,
+        name: playerName,
+        socketId: socket.id
+      };
+      
+      room.players.push(player);
+      socket.join(roomCode);
+      
+      io.to(roomCode).emit('player-joined', {
+        players: room.players
+      });
+      
+      console.log(`Player ${playerName} joined room ${roomCode}`);
+    } else {
+      socket.emit('error', { message: 'Room is full' });
+    }
+  });
+
   socket.on('start-game', (roomCode) => {
     const room = rooms.get(roomCode);
     if (!room || room.players.length < 2) return;
@@ -191,6 +239,27 @@ io.on('connection', (socket) => {
       question: question,
       round: room.round
     });
+  });
+
+  socket.on('leave-room', (roomCode) => {
+    const room = rooms.get(roomCode);
+    if (!room) return;
+
+    socket.leave(roomCode);
+    const playerIndex = room.players.findIndex(p => p.socketId === socket.id);
+    
+    if (playerIndex !== -1) {
+      room.players.splice(playerIndex, 1);
+      
+      if (room.players.length === 0) {
+        rooms.delete(roomCode);
+        console.log(`Room ${roomCode} deleted`);
+      } else {
+        io.to(roomCode).emit('player-left', {
+          players: room.players
+        });
+      }
+    }
   });
 
   socket.on('disconnect', () => {

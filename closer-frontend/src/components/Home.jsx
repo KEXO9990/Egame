@@ -22,35 +22,35 @@ function Home({ onCreateRoom, onJoinRoom }) {
     return (
       <div className="container fade-in">
         <div className="logo">
-          <h1>Closer</h1>
-          <p>Connect Deeper</p>
+          <h1>كلوزر</h1>
+          <p>تواصل أعمق</p>
         </div>
         
         <div className="welcome-text">
-          <p>A game designed to bring you and your partner closer through meaningful questions and thoughtful challenges.</p>
+          <p>لعبة مصممة لتقربكم أنتم وشريككم من خلال أسئلة ذات معنى وتحديات مدروسة.</p>
         </div>
 
         <div className="button-group">
           <button className="btn" onClick={() => setMode('create')}>
-            Create New Game
+            إنشاء لعبة جديدة
           </button>
           <button className="btn btn-secondary" onClick={() => setMode('join')}>
-            Join Game
+            الانضمام للعبة
           </button>
         </div>
 
         <div className="features">
           <div className="feature">
             <span className="feature-icon">💝</span>
-            <p>Discover new things about each other</p>
+            <p>اكتشفوا أشياء جديدة عن بعضكم</p>
           </div>
           <div className="feature">
             <span className="feature-icon">🎯</span>
-            <p>Build deeper connection</p>
+            <p>بناء اتصال أعمق</p>
           </div>
           <div className="feature">
             <span className="feature-icon">✨</span>
-            <p>Create memorable moments</p>
+            <p>خلق لحظات لا تُنسى</p>
           </div>
         </div>
       </div>
@@ -61,15 +61,15 @@ function Home({ onCreateRoom, onJoinRoom }) {
     return (
       <div className="container fade-in">
         <div className="logo">
-          <h1>Closer</h1>
+          <h1>كلوزر</h1>
         </div>
 
-        <h2 className="form-title">Create New Game</h2>
+        <h2 className="form-title">إنشاء لعبة جديدة</h2>
         
         <input
           type="text"
           className="input"
-          placeholder="Enter your name"
+          placeholder="أدخل اسمك"
           value={name}
           onChange={(e) => setName(e.target.value)}
           onKeyPress={(e) => e.key === 'Enter' && handleCreate()}
@@ -77,11 +77,11 @@ function Home({ onCreateRoom, onJoinRoom }) {
         />
 
         <button className="btn" onClick={handleCreate} disabled={!name.trim()}>
-          Create Room
+          إنشاء غرفة
         </button>
 
         <button className="btn btn-secondary" onClick={() => setMode(null)} style={{ marginTop: '15px' }}>
-          Back
+          رجوع
         </button>
       </div>
     );
@@ -90,15 +90,15 @@ function Home({ onCreateRoom, onJoinRoom }) {
   return (
     <div className="container fade-in">
       <div className="logo">
-        <h1>Closer</h1>
+        <h1>كلوزر</h1>
       </div>
 
-      <h2 className="form-title">Join Game</h2>
+      <h2 className="form-title">الانضمام للعبة</h2>
       
       <input
         type="text"
         className="input"
-        placeholder="Enter your name"
+        placeholder="أدخل اسمك"
         value={name}
         onChange={(e) => setName(e.target.value)}
         maxLength={20}
@@ -107,7 +107,7 @@ function Home({ onCreateRoom, onJoinRoom }) {
       <input
         type="text"
         className="input"
-        placeholder="Enter room code"
+        placeholder="أدخل كود الغرفة"
         value={joinCode}
         onChange={(e) => setJoinCode(e.target.value.toUpperCase())}
         onKeyPress={(e) => e.key === 'Enter' && handleJoin()}
@@ -115,11 +115,11 @@ function Home({ onCreateRoom, onJoinRoom }) {
       />
 
       <button className="btn" onClick={handleJoin} disabled={!name.trim() || !joinCode.trim()}>
-        Join Room
+        الانضمام للغرفة
       </button>
 
       <button className="btn btn-secondary" onClick={() => setMode(null)} style={{ marginTop: '15px' }}>
-        Back
+        رجوع
       </button>
     </div>
   );
