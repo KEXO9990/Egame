@@ -144,11 +144,21 @@ function App() {
   }, []);
 
   const createRoom = (name) => {
+    if (!socket || !socket.connected) {
+      setError('Connecting to server...');
+      setTimeout(() => setError(''), 2000);
+      return;
+    }
     setPlayerName(name);
     socket.emit('create-room', name);
   };
 
   const joinRoom = (name, code) => {
+    if (!socket || !socket.connected) {
+      setError('Connecting to server...');
+      setTimeout(() => setError(''), 2000);
+      return;
+    }
     setPlayerName(name);
     socket.emit('join-room', { roomCode: code, playerName: name });
     setRoomCode(code);
@@ -171,6 +181,17 @@ function App() {
   };
 
   const resetGame = () => {
+    // Clear localStorage when going home
+    localStorage.removeItem('gameState');
+    localStorage.removeItem('playerName');
+    localStorage.removeItem('roomCode');
+    localStorage.removeItem('players');
+    localStorage.removeItem('currentQuestion');
+    localStorage.removeItem('round');
+    localStorage.removeItem('revealData');
+    localStorage.removeItem('challenge');
+    localStorage.removeItem('score');
+    
     setGameState('home');
     setPlayerName('');
     setRoomCode('');
