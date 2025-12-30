@@ -1,15 +1,16 @@
 {
   "name": "closer-backend",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Closer couples game backend",
+  "main": "server.js",
+  "type": "module",
   "scripts": {
+    "start": "node server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "commonjs",
   "dependencies": {
     "cors": "^2.8.5",
     "express": "^5.2.1",
